@@ -1,0 +1,21 @@
+import cv2
+import numpy as np
+
+win_name1 = 'scan1:BGR2GRAY'
+win_name2 = 'scan2:GaussianBlur'
+win_name3 = 'scan3:edged(Canny)'
+win_name4 = 'scan4:drawContour'
+win_name5 = 'scan5:AllContour'
+win_name6 = 'scan6:result'
+
+# 이미지 읽기
+img = cv2.imread("C:/Users/SungMin/Desktop/photo.jpg")
+cv2.imshow('original', img)
+cv2.waitKey(0)
+draw = img.copy()
+draw1 = img.copy()
+
+# 그레이스 스케일 변환 및 케니 엣지
+gray1 = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+gray2 = cv2.GaussianBlur(gray1, (3, 3), 0) # 가우시안 블러로 노이즈 제거
+edged = cv2.Canny(gray2, 75, 200)    # 케니 엣지로 경계 검출
